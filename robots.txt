@@ -1,8 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /dashboard
-Disallow: /login
-Disallow: /signup
-Disallow: /settings
-
-Sitemap: https://tehsaad.me/sitemap.xml
