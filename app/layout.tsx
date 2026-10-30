@@ -1,95 +1,52 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { TopBar } from "@/components/TopBar";
-import { DepthGauge } from "@/components/DepthGauge";
-import { RevealObserver } from "@/components/RevealObserver";
-import { site } from "@/data/site";
-import "@/styles/globals.css";
+import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { profile, site } from "@/data/site";
+import "./globals.css";
 
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", axes: ["wdth", "opsz"], display: "swap" });
+const body = Instrument_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["500"], display: "swap" });
 
-const title = `${site.name}: builds in computer vision, C++ and the full stack`;
+const title = `${profile.name} (${profile.handle}): AI, systems and full-stack builds`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: `%s · ${site.name}` },
+  title: { default: title, template: `%s · ${profile.name}` },
   description: site.description,
-  applicationName: site.name,
-  authors: [{ name: site.name, url: site.links.github }],
-  creator: site.name,
-  keywords: [
-    "TehSaad",
-    "computer science student",
-    "AI developer",
-    "computer vision",
-    "MediaPipe",
-    "OpenCV",
-    "C++",
-    "Qt",
-    "Next.js",
-    "full-stack developer",
-    "portfolio",
-  ],
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: site.github }],
+  creator: profile.name,
   alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: "/",
-    siteName: site.name,
-    title,
-    description: site.description,
-    locale: "en_US",
-  },
+  openGraph: { type: "website", url: "/", siteName: profile.name, title, description: site.description, locale: "en_US" },
   twitter: { card: "summary_large_image", title, description: site.description },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c0c0a",
+  themeColor: "#08080b",
   colorScheme: "dark",
 };
 
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: site.name,
+  name: profile.name,
+  alternateName: profile.handle,
   url: site.url,
-  jobTitle: site.role,
+  jobTitle: profile.headline,
   address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
-  sameAs: [site.links.github, site.links.linkedin].filter(Boolean),
-  knowsAbout: ["Computer Vision", "Machine Learning", "Python", "C++", "Qt", "Full-Stack Development"],
+  sameAs: [site.github, site.linkedin, "https://www.tehsaad.site"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        {/* Reveal-on-scroll only hides content once we know JS is running. */}
+        {/* Hides the intro until the animation takes over; CSS reveals it anyway if that never happens. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       </head>
-      <body>
-        <a
-          href="#main"
-          className="label sr-only z-[200] bg-signal px-3 py-2 text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-        >
-          Skip to content
-        </a>
-        <TopBar />
-        <DepthGauge />
-        {children}
-        <RevealObserver />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

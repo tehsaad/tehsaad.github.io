@@ -1,0 +1,958 @@
+{
+  "publicationId": 26,
+  "projects": [
+    {
+      "id": "13915cd0-8393-47d5-9c14-a4ae34850539",
+      "_v": 4,
+      "slug": "codebasegpt",
+      "name": "CodeBaseGPT",
+      "featured": true,
+      "category": "Full-Stack · AI",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "Understand any codebase, with receipts: an interactive architecture map, and answers from the code with file-and-line citations.",
+      "problem": "Students and developers who are new to a codebase need to see how it fits together, and need answers they can check against the real code.",
+      "built": "A Next.js app that imports a repository, parses it with Tree-sitter into files, symbols, imports and calls, and shows the result in an interactive Codebase Atlas. Gemma answers questions from retrieved code, and Student Stuck Mode combines the repository with live web research to explain a problem at beginner, intermediate or advanced level.",
+      "notes": [
+        "Tree-sitter parsing for TypeScript, JavaScript, Python, Java, C and C++",
+        "Hybrid retrieval: Postgres full-text search, symbol definitions and call sites, importers of the focused file, and optional pgvector embeddings",
+        "The server validates citation labels and flags any the model invented; with no matching code it says so and makes no model call",
+        "Repository evidence, web sources and the AI's reasoning are shown as three separate sections",
+        "Insights measured from the index, including import cycles (Tarjan SCC) and most-depended-on files",
+        "104 Vitest unit and integration tests, plus Playwright end-to-end tests; MIT licence"
+      ],
+      "extra": "",
+      "limits": "Graphs are capped at 400 nodes and ranked by connectivity. The complexity score is a documented heuristic, not a bug report.",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://codebasegpt.vercel.app",
+          "internal": false
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/CodeBaseGPT",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "PostgreSQL",
+        "pgvector",
+        "Tree-sitter",
+        "Drizzle ORM",
+        "AI SDK",
+        "Vercel"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/codebasegpt.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "CodeBaseGPT landing page with the headline \"Read any codebase like you wrote it.\"",
+          "caption": "Live site — codebasegpt.vercel.app"
+        }
+      ]
+    },
+    {
+      "id": "5e635ff3-2ab5-4625-b112-81a588cafcb7",
+      "_v": 4,
+      "slug": "hamqadam",
+      "name": "Hamqadam",
+      "featured": true,
+      "category": "Full-Stack · Platform",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "A branch-to-head-office management platform and bilingual public website for a volunteer organisation. Built for ShipLens Challenge #01.",
+      "problem": "Spreadsheet and WhatsApp reporting leaves a head office without approved, auditable records from its branches.",
+      "built": "Branch Leads record collections and submit weekly reports, the Finance Reviewer approves or returns them, HR turns volunteer applications into members, and head office sees everything on one dashboard. The public site runs in English and in right-to-left Urdu.",
+      "notes": [
+        "Rules enforced in PostgreSQL: a 7-day collection lock, approved-week checks, correction limits and an append-only audit log",
+        "Role permission matrix tested for every role against every action",
+        "CSV and PDF exports scoped by role and audited",
+        "Sign-in lockout after failed attempts, a forced first-login password change, and a content security policy",
+        "CI runs unit, integration and Playwright end-to-end tests, with deploys through a Render hook",
+        "Built with Claude Code and Gemini, disclosed in the repository's AI-USAGE.md as the challenge requires"
+      ],
+      "extra": "",
+      "limits": "Runs on Render's free plan, which sleeps when idle, so the first page can take up to a minute. The data is sample data.",
+      "sourceNote": "The repository is named ShipLens after the challenge.",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://shiplens.onrender.com",
+          "internal": false
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/ShipLens",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "PostgreSQL",
+        "Prisma",
+        "Auth.js",
+        "next-intl",
+        "Docker",
+        "Render"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/hamqadam.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Hamqadam public home page with volunteer sign-up, announcements and programs",
+          "caption": "Live site — shiplens.onrender.com"
+        }
+      ]
+    },
+    {
+      "id": "2e46b760-e346-4fe8-8057-8948aef3ed68",
+      "_v": 4,
+      "slug": "orbit",
+      "name": "Orbit",
+      "featured": true,
+      "category": "Full-Stack · Productivity",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "A private academic command center for a NUST student: classes, deadlines, marks, attendance, calendar, tasks and reminders in one place.",
+      "problem": "Academic information is spread across the LMS, Qalam, email and calendars, and it is hard to tell which source an item came from or how fresh it is.",
+      "built": "A single-user Next.js app with a daily overview, per-course standing and attendance risk, a marks target planner, a timetable with conflict detection, a calendar, Markdown notes and reminders. Every item shows its source and freshness.",
+      "notes": [
+        "Raw percentage, weighted contribution and official grade are kept separate",
+        "Email-derived assignments stay \"Suggested\" until confirmed",
+        "Moodle LMS sync or .ics upload, and CSV import for Qalam, which has no API",
+        "Argon2id, TOTP 2FA, session revocation, rate limiting and an audit log",
+        "89 Vitest unit and integration tests, plus Playwright end-to-end tests"
+      ],
+      "extra": "",
+      "limits": "Private and single-user: registration is disabled, so visitors can only see the sign-in page. LMS sync has not been tested with real student data yet.",
+      "sourceNote": "An independent student-built tool. Not an official NUST application, and not affiliated with NUST, its LMS or Qalam.",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/NustOrbit",
+          "internal": false
+        },
+        {
+          "label": "Sign-in page (private)",
+          "url": "https://nustorbit.vercel.app",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "PostgreSQL",
+        "Prisma",
+        "Better Auth",
+        "Zod",
+        "Vercel"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/orbit.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Orbit overview with the next class countdown, deadlines, recent marks and reminders",
+          "caption": "Running locally with test data; production is private"
+        }
+      ]
+    },
+    {
+      "id": "991b5b4a-4af4-4567-b2e2-b66ed27fceeb",
+      "_v": 1,
+      "slug": "daybreak",
+      "name": "DAYBREAK",
+      "featured": true,
+      "category": "Full-Stack · AI",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "A personal morning newspaper: real reporting ranked around one reader, as a web paper and a matching PDF. Built for the NaSCon'26 AI Hackathon.",
+      "problem": "News feeds either show everyone the same front page or bury readers in an endless stream. A reader wants one finishable paper about what matters to them — with every story traceable to the original reporting.",
+      "built": "A Next.js 16 app on Vercel that ingests 43 RSS feeds from 21 publishers (Dawn, Business Recorder, BBC, The Guardian, Nature and more), ranks stories against each reader's sections, region and muted topics, learns from saves, skips and \"not interested\", and renders the saved edition as a web newspaper and a multi-page A4 PDF. Story Explorer groups the same event across newsrooms.",
+      "notes": [
+        "Every story links to its publisher; only headlines and short excerpts are stored",
+        "Ranking is deterministic, with diversity rules and a \"Beyond your usual\" slot; learned feedback weights decay over time and can be inspected and reset",
+        "Optional AI layer: one structured call per edition, validated with Zod; summaries are rejected if they cite numbers, people or places absent from the source",
+        "Without an API key it still works and says so — the paper is labelled \"No AI text in this edition\"",
+        "Saved editions are immutable: Postgres triggers forbid rewrites, so the archive, web page and PDF always match",
+        "SSRF-safe feed fetching from a fixed source list; Supabase Auth with row-level security",
+        "177 Vitest tests, plus a Playwright reader journey; CI on GitHub Actions"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://daybreak-gilt.vercel.app",
+          "internal": false
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/DayBreak",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "Supabase",
+        "PostgreSQL",
+        "LLM APIs",
+        "Zod",
+        "Vercel"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/daybreak.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "DAYBREAK landing page with the newspaper masthead and a live front-page preview of ranked stories",
+          "caption": "Live site — daybreak-gilt.vercel.app"
+        }
+      ]
+    },
+    {
+      "id": "e8e8b98e-6248-4063-bf19-c39406b1b859",
+      "_v": 1,
+      "slug": "findost",
+      "name": "FinDost AI",
+      "featured": true,
+      "category": "Full-Stack · FinTech",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "Cash-flow early warning and recovery planning for Pakistani shops, households and students — in English and Urdu.",
+      "problem": "A shop can be profitable on paper and still run out of cash: customers pay late (udhaar) while rent, suppliers and bills fall due on fixed dates.",
+      "built": "A Next.js frontend and a FastAPI backend over Supabase Postgres: a digital khata with receivables and payables, CSV import that understands Roman Urdu headers and Pakistani formats, a day-by-day 30-day cash forecast, early warnings with the records behind them, a what-if shock simulator, and recovery options priced by re-running the forecast. Built with Aiman as a contributor.",
+      "notes": [
+        "Every figure comes from a deterministic engine; the forecast model is chosen per workspace by back-testing",
+        "AI is optional and opt-in (Groq / Gemini): it words answers and reads receipts into rows you review — a reply is discarded if it contains a number not in the evidence",
+        "Workspaces with owner / editor / viewer roles; a workspace id from the browser is honoured only for its members, tested for tenant isolation",
+        "Enterprise flow: proposed actions → owner approval → completion, with an audit trail",
+        "171 backend pytest tests, with AI providers mocked"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://findostai.vercel.app",
+          "internal": false
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/Fin-Dost_AI",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "Python",
+        "FastAPI",
+        "Supabase",
+        "PostgreSQL",
+        "NumPy",
+        "Vercel"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/findost.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "FinDost AI command center showing a projected cash shortage warning, balances, receivables, bills due and forecasts",
+          "caption": "Shop dashboard with fictional demo data"
+        }
+      ]
+    },
+    {
+      "id": "ea444526-4e2e-40f9-9f49-2ac9fb22493f",
+      "_v": 1,
+      "slug": "shopflow",
+      "name": "ShopFlow",
+      "featured": true,
+      "category": "Full-Stack · AI",
+      "status": "deployed",
+      "yearLabel": "Oct 2026",
+      "tagline": "Marketplace and shop-management platform for small independent sellers, with an AI-assisted customer inbox.",
+      "problem": "Small sellers — Instagram and WhatsApp shops, boutiques — juggle stock, orders, a store page and customer messages across separate tools.",
+      "built": "A multi-tenant Next.js + Django REST platform: per-shop inventory with variants, orders, a public storefront with cart and checkout, customer records, analytics, and **ReplyFlow** — an inbox where Claude drafts replies grounded in the shop's live catalogue and the customer's orders, which a person reviews before sending.",
+      "notes": [
+        "JWT auth with 15-minute access tokens, refresh rotation and blacklisting; tokens live in httpOnly cookies behind a Next.js proxy",
+        "Owner / admin / staff roles enforced by DRF permission classes, with tenant-isolation tests",
+        "AI drafts use live prices and stock, are told to ignore instructions inside customer messages, and are never auto-sent",
+        "Stripe behind a payment-provider interface with signature-verified webhooks; live stores currently use cash on delivery",
+        "Per-endpoint rate limits (auth, AI, checkout, password reset), HSTS and secure cookies in production",
+        "~126 backend tests + Vitest; CI runs lint, type-check, tests, build and `npm audit`"
+      ],
+      "extra": "Also shipped a Kotlin Android wrapper (signed v1.0.1 APK) with persistent sessions, camera uploads and external-link routing.",
+      "limits": "",
+      "sourceNote": "Source is private — happy to walk through the code.",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Live Demo",
+          "url": "https://shopflow-web-ten.vercel.app",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "Django REST",
+        "PostgreSQL",
+        "Claude API",
+        "Stripe",
+        "Vercel"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/shopflow.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "ShopFlow features page listing inventory, orders, customers, ReplyFlow and analytics",
+          "caption": "Live site — shopflow-web-ten.vercel.app/features"
+        }
+      ]
+    },
+    {
+      "id": "1ca3232f-7be2-4ab4-924f-51f99d57ec46",
+      "_v": 1,
+      "slug": "pharmapro",
+      "name": "PharmaPro",
+      "featured": true,
+      "category": "Desktop · Python",
+      "status": "completed",
+      "yearLabel": "Oct 2026",
+      "tagline": "Offline desktop pharmacy system: batch and expiry tracking, point of sale, receipts and profit reports.",
+      "problem": "A small pharmacy has to sell from the right batch, never sell expired stock, and keep working when the internet doesn't.",
+      "built": "A PySide6 (Qt) desktop app over SQLAlchemy + SQLite with a medicine catalogue, batch-based stock receiving, a barcode-friendly POS with printable receipts, expenses, profit reports, charts and backup/restore — packaged as a Windows `.exe` and a Debian `.deb`.",
+      "notes": [
+        "First-expiry-first-out batch allocation at checkout; expired batches are blocked from sale",
+        "Database CHECK constraints make negative stock impossible; writes run in `BEGIN IMMEDIATE` transactions",
+        "UI talks only to a service layer, so business rules are tested without opening a window",
+        "Fully offline — a test asserts the app makes no network calls",
+        "81 pytest tests including offscreen UI smoke tests; CI builds the installers"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "v1.0.0 builds for Windows and Linux.",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/PharmaPro",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "Python",
+        "PySide6 / Qt",
+        "SQLAlchemy",
+        "SQLite",
+        "pytest",
+        "PyInstaller"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/pharmapro.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "PharmaPro dashboard with sales, profit, expiring-batch alerts and a 14-day sales chart",
+          "caption": "Dashboard rendered with the app's built-in sample data"
+        }
+      ]
+    },
+    {
+      "id": "479b7999-7bce-4f55-b944-34752fbee52d",
+      "_v": 2,
+      "slug": "library-system",
+      "name": "Library Management System",
+      "featured": true,
+      "category": "Systems · C++",
+      "status": "completed",
+      "yearLabel": "Aug – Oct 2026",
+      "tagline": "Desktop library software in C++17 with a Qt 6 interface and role-based workflows.",
+      "problem": "Students, faculty and admins need different powers over the same catalogue, loans and members — and the data must survive restarts without a database.",
+      "built": "Students borrow and return their own books; faculty manage the catalogue and issue/return for students; the admin manages members and reviews volunteer applications. Everything persists to CSV through a hand-written parser and file handler.",
+      "notes": [
+        "Model, storage and rules are plain C++ with no Qt — the GUI only calls into `Library`",
+        "Permissions resolved through virtual functions on `Person` subclasses — no role checks in the GUI",
+        "Loan rules: 14-day loans, 5-book cap, fee/warning blocks, late returns add a warning",
+        "Atomic saves: each CSV is written to `.tmp` then renamed, so a crash never leaves half a file",
+        "CSV parser handles quoted commas and escaped quotes; templated `loadTable<T>` / `saveTable<T>`",
+        "68 / 68 core checks pass with a single `g++` command"
+      ],
+      "extra": "",
+      "limits": "Passwords are stored in plain text — acceptable for a class project, and documented in the README.",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/Library-Managment-System",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "C++17",
+        "Qt 6",
+        "OOP",
+        "CSV Persistence",
+        "unique_ptr / RAII"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/library-system.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Library Management System admin overview with catalogue and loan totals, overdue books and recent activity",
+          "caption": "The Qt desktop app with its sample data"
+        }
+      ]
+    },
+    {
+      "id": "7e9501b5-2103-45ce-94f5-a727fd418703",
+      "_v": 2,
+      "slug": "air-draw",
+      "name": "Air Draw Controller",
+      "featured": false,
+      "category": "Computer Vision",
+      "status": "experiment",
+      "yearLabel": "Sep 2026",
+      "tagline": "Computer-vision interface: draw in the air with your index finger using webcam hand tracking.",
+      "problem": "Can an ordinary webcam become a touch-free drawing surface, in real time, without extra hardware?",
+      "built": "A real-time loop: mirrored OpenCV capture → MediaPipe Hands landmarks → a finger-state gesture check → strokes on a canvas overlaid on the live video.",
+      "notes": [
+        "Gesture detection from landmark geometry: a finger is \"up\" when its tip is above its middle joint",
+        "Draws only in the \"index up, others down\" pose; any other pose lifts the pen, so no stray lines",
+        "Canvas merged onto each frame with a NumPy mask; [[c]] clears, [[q]] quits"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "Single-file prototype — source not published yet.",
+      "hasTests": false,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [],
+      "stack": [
+        "Python",
+        "OpenCV",
+        "MediaPipe",
+        "NumPy"
+      ],
+      "media": []
+    },
+    {
+      "id": "c81124cc-3772-4012-acfe-c8b297ff4d85",
+      "_v": 2,
+      "slug": "workspace-cmd",
+      "name": "Workspace Commander",
+      "featured": false,
+      "category": "Dev Tools · AI Agents",
+      "status": "in-development",
+      "yearLabel": "Oct 2026",
+      "tagline": "A local command center where several AI coding agents coordinate on one project through plain Markdown in an Obsidian vault.",
+      "problem": "",
+      "built": "A Claude Code plugin (dashboard pane, agent tools, file watching) plus a Node CLI and a local MCP server, so agents share a plan, claim tasks, message each other and hand off files — all through locked, atomic Markdown writes. It was built by several Claude Code sessions coordinating through it.",
+      "notes": [
+        "Verified live with Claude Code and OpenAI Codex CLI",
+        "70 tests",
+        "v0.4.0, MIT licence"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/WorkPlace-Commander",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "TypeScript",
+        "Node.js",
+        "MCP",
+        "Claude Code plugins",
+        "Obsidian"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/workspace-cmd.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Workspace Commander dashboard showing tasks, active agents, an open request and recent activity",
+          "caption": "The web dashboard with a sample workspace"
+        }
+      ]
+    },
+    {
+      "id": "e269b140-2f87-4f71-811d-cc33760b780e",
+      "_v": 1,
+      "slug": "jarvis",
+      "name": "JARVIS / FRIDAY Voice Assistant",
+      "featured": false,
+      "category": "Python · Speech",
+      "status": "completed",
+      "yearLabel": "Oct 2026",
+      "tagline": "Desktop voice assistant with two personas that understands English, Hindi and Hinglish.",
+      "problem": "",
+      "built": "Speech-to-text, rule-based intent detection with transliteration, ElevenLabs / Edge text-to-speech, music from local files or YouTube, and a pygame GUI. Deliberately rule-based — no LLM.",
+      "notes": [
+        "46 pytest tests across intents, language handling and personas"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "Source private",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [],
+      "stack": [
+        "Python",
+        "SpeechRecognition",
+        "ElevenLabs / Edge TTS",
+        "pygame"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/jarvis.webp",
+          "width": 1200,
+          "height": 806,
+          "alt": "JARVIS assistant window with voice waveform, a conversation log in English and Hinglish, and a status panel",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "3411389c-b4c4-4e8c-a8f5-8ac90bf8faa8",
+      "_v": 2,
+      "slug": "resume-analyzer",
+      "name": "Resume Analyzer",
+      "featured": false,
+      "category": "AI · Web",
+      "status": "in-development",
+      "yearLabel": "Oct 2026",
+      "tagline": "Upload a résumé and an optional job description; get scores, suggestions and job-match keywords.",
+      "problem": "",
+      "built": "PDF/DOCX/TXT extraction, LLM analysis via OpenAI or Llama (Hugging Face) forced into a strict JSON schema validated by Zod, and an offline rule-based fallback when no API key is set.",
+      "notes": [
+        "Unit tests for the heuristic analyzer and the output schema"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "Not deployed yet",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "OpenAI API",
+        "Zod",
+        "Vitest"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/resume-analyzer.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Resume Analyzer results with an overall score, a score breakdown and detected skills",
+          "caption": "Analyzing the bundled sample resume with offline rules"
+        }
+      ]
+    },
+    {
+      "id": "8e63a3c6-7b2b-42af-98b2-1cf26b66fa23",
+      "_v": 2,
+      "slug": "snake",
+      "name": "Snake — Browser Game",
+      "featured": false,
+      "category": "Web · Game",
+      "status": "completed",
+      "yearLabel": "Sep 2026",
+      "tagline": "Classic Snake on HTML Canvas in vanilla JavaScript.",
+      "problem": "",
+      "built": "Multiple modes and difficulty levels, rising speed, high scores in localStorage, touch controls, effects and audio.",
+      "notes": [],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": false,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Play",
+          "url": "games/snake-game/index.html",
+          "internal": true
+        }
+      ],
+      "stack": [
+        "JavaScript",
+        "HTML Canvas",
+        "CSS"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/snake.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Snake game board with the snake moving toward food and the score bar above",
+          "caption": "Demo mode on this site"
+        }
+      ]
+    },
+    {
+      "id": "b6a265a3-3128-4aa1-9565-c2d5ebe03536",
+      "_v": 2,
+      "slug": "space-shooter",
+      "name": "Space Shooter — Browser Game",
+      "featured": false,
+      "category": "Web · Game",
+      "status": "completed",
+      "yearLabel": "Oct 2026",
+      "tagline": "A pixel-art arcade shooter on HTML Canvas, made to sit alongside Snake.",
+      "problem": "",
+      "built": "Hand-placed pixel sprites drawn at 192×256 and scaled up crisply, four enemy types plus a boss with three attack patterns, pick-ups, a kill-streak multiplier and sound synthesised with the Web Audio API. The game simulation never touches the DOM, so whole games run headlessly in the tests.",
+      "notes": [
+        "36 automated tests, including headless gameplay and a three-minute soak run"
+      ],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": true,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "Play",
+          "url": "games/space-shooter/index.html",
+          "internal": true
+        }
+      ],
+      "stack": [
+        "JavaScript",
+        "HTML Canvas",
+        "Web Audio API",
+        "CSS"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/space-shooter.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Space Shooter in play at level 2, with the ship, a planet and a score of 400",
+          "caption": "Played on this site"
+        }
+      ]
+    },
+    {
+      "id": "ddc08607-4f98-40aa-968a-56a3178ec9b0",
+      "_v": 3,
+      "slug": "tic-tac-toe",
+      "name": "Tic-Tac-Toe",
+      "featured": false,
+      "category": "C++ · Game",
+      "status": "completed",
+      "yearLabel": "Oct 2026",
+      "tagline": "A two-player Tic-Tac-Toe game for the terminal, written in C++.",
+      "problem": "",
+      "built": "Players take turns choosing a numbered box. The game rejects invalid input and taken boxes, then detects a win or a draw.",
+      "notes": [],
+      "extra": "",
+      "limits": "",
+      "sourceNote": "",
+      "hasTests": false,
+      "codeFile": "",
+      "codeLanguage": "",
+      "codeSource": "",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/tehsaad/Tic-Tac-Toe",
+          "internal": false
+        }
+      ],
+      "stack": [
+        "C++"
+      ],
+      "media": [
+        {
+          "url": "assets/img/work/tic-tac-toe.webp",
+          "width": 1200,
+          "height": 750,
+          "alt": "Tic-Tac-Toe board in a terminal, mid-game, with Player X to move",
+          "caption": "Actual output of the program"
+        }
+      ]
+    }
+  ],
+  "profile": {
+    "id": "d515e4f9-cf1f-463a-9470-e7d77e391d87",
+    "_v": 1,
+    "name": "Saad Rizwan",
+    "handle": "TehSaad",
+    "headline": "CS Undergraduate · NUST SEECS",
+    "location": "Islamabad, Pakistan",
+    "email": "tehsaad13453310@gmail.com",
+    "availability": "Open to internships & research",
+    "portraitAlt": "Portrait of Saad Rizwan",
+    "social": [
+      {
+        "kind": "github",
+        "label": "GitHub",
+        "url": "https://github.com/tehsaad"
+      },
+      {
+        "kind": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/saad-rizwan-336b8b3ba/"
+      }
+    ],
+    "portrait": {
+      "url": "assets/img/profile.webp",
+      "width": 640,
+      "height": 1138
+    }
+  },
+  "skills": [
+    {
+      "id": "d6d0f29a-6ab9-4314-8040-dc703afa6bc9",
+      "_v": 1,
+      "domain": "Languages",
+      "items": [
+        "C++17",
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Kotlin (Android basics)"
+      ],
+      "evidence": "Library System · PharmaPro · ShopFlow · DayBreak"
+    },
+    {
+      "id": "be46b9bf-a53e-4a9a-bc76-215d0959e245",
+      "_v": 1,
+      "domain": "AI & Computer Vision",
+      "items": [
+        "LLM APIs (Claude, OpenAI, Groq, Gemini)",
+        "Grounded prompts",
+        "Structured output",
+        "MCP",
+        "OpenCV",
+        "MediaPipe",
+        "Speech-to-text / TTS"
+      ],
+      "evidence": "ShopFlow · DayBreak · FinDost · Workspace Commander · Air Draw · JARVIS"
+    },
+    {
+      "id": "332acb06-615b-4b47-bfca-c47a40dfea7c",
+      "_v": 1,
+      "domain": "Backend & Data",
+      "items": [
+        "Django REST Framework",
+        "FastAPI",
+        "JWT auth & roles",
+        "PostgreSQL",
+        "Supabase (Auth, RLS)",
+        "SQLite / SQLAlchemy",
+        "Stripe webhooks",
+        "CSV persistence"
+      ],
+      "evidence": "ShopFlow · FinDost · DayBreak · PharmaPro · Library System"
+    },
+    {
+      "id": "574edb80-b289-4d2b-a41a-ea767111bf84",
+      "_v": 1,
+      "domain": "Web",
+      "items": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Semantic HTML & CSS"
+      ],
+      "evidence": "ShopFlow · DayBreak · FinDost · this site"
+    },
+    {
+      "id": "3f5f5ab2-2dd3-4d55-a960-f96758ca6b72",
+      "_v": 1,
+      "domain": "Desktop",
+      "items": [
+        "Qt 6 (C++)",
+        "PySide6",
+        "PyInstaller packaging"
+      ],
+      "evidence": "Library System · PharmaPro"
+    },
+    {
+      "id": "60b7b9b2-7052-4137-a783-6c3bce8db6e8",
+      "_v": 1,
+      "domain": "Practice",
+      "items": [
+        "Git",
+        "GitHub Actions",
+        "pytest",
+        "Vitest",
+        "Linux",
+        "Docker (dev setup)"
+      ],
+      "evidence": "CI on ShopFlow, PharmaPro and DayBreak"
+    }
+  ],
+  "principles": [
+    {
+      "id": "de50d6b4-65d4-4d03-8e04-f21ccbb5a48c",
+      "_v": 1,
+      "title": "Keep the logic out of the UI",
+      "body": "The Library System's rules are plain C++ and PharmaPro's live in a service layer — both are tested without opening a window."
+    },
+    {
+      "id": "d6746e9f-77a4-4cd9-b7aa-92f251ba44b5",
+      "_v": 1,
+      "title": "Make bad states impossible",
+      "body": "Database constraints stop negative stock; a `Date` can't hold 30 February; saves are atomic."
+    },
+    {
+      "id": "b36148f5-9a5c-4bc0-a16d-949ae7e90a88",
+      "_v": 1,
+      "title": "AI drafts, people decide",
+      "body": "ShopFlow's assistant is grounded in real shop data, won't invent prices, and never sends without a human."
+    },
+    {
+      "id": "0048316a-6c02-49b2-981f-55ec903407f4",
+      "_v": 1,
+      "title": "Tests before claims",
+      "body": "Every number on this site comes from a test suite, the source, or a live deployment."
+    }
+  ],
+  "journey": [
+    {
+      "id": "4a2f95f5-c02e-4fac-afb1-e8e2c9c4c549",
+      "_v": 2,
+      "yearLabel": "2026",
+      "kind": "current",
+      "label": "YEAR 1 · SO FAR",
+      "heading": "Foundations, then real builds",
+      "entries": [
+        {
+          "dateLabel": "Oct 2026",
+          "title": "CodeBaseGPT, Orbit & Hamqadam",
+          "body": "A code-understanding app with cited answers, a private academic command center, and a branch-management platform for ShipLens Challenge #01."
+        },
+        {
+          "dateLabel": "Oct 2026",
+          "title": "DAYBREAK at the NaSCon'26 AI Hackathon",
+          "body": "A personalised morning newspaper built from 43 publisher feeds, with a PDF edition — deployed with its source public."
+        },
+        {
+          "dateLabel": "Oct 2026",
+          "title": "FinDost AI & Workspace Commander",
+          "body": "A cash-flow early-warning app, built with Aiman, for Pakistani shops and households, and a tool for coordinating several AI coding agents through Markdown."
+        },
+        {
+          "dateLabel": "Oct 2026",
+          "title": "PharmaPro 1.0 & Library System rewrite",
+          "body": "Shipped an offline pharmacy app with Windows and Linux installers, and rebuilt the Library System as a clean OOP C++/Qt codebase with a test suite."
+        },
+        {
+          "dateLabel": "Oct 2026",
+          "title": "ShopFlow deployed",
+          "body": "Full-stack marketplace with an AI-assisted inbox, role-based auth and CI — plus an Android wrapper."
+        },
+        {
+          "dateLabel": "Oct 2026",
+          "title": "JARVIS voice assistant & Resume Analyzer",
+          "body": "A bilingual rule-based voice assistant, and an LLM résumé analyzer with structured output (still in development)."
+        },
+        {
+          "dateLabel": "Sep 2026",
+          "title": "Air Draw Controller",
+          "body": "First computer-vision experiment: webcam hand tracking with OpenCV and MediaPipe."
+        },
+        {
+          "dateLabel": "Aug 2026",
+          "title": "Library Management System v1 & this portfolio",
+          "body": "First Qt desktop app in C++; hand-built this static site with no framework."
+        },
+        {
+          "dateLabel": "Mar 2026",
+          "title": "Started BS Computer Science at NUST SEECS",
+          "body": "School of Electrical Engineering & Computer Science, Islamabad."
+        }
+      ]
+    },
+    {
+      "id": "dfd82a6a-afd3-41fb-b5d9-980816d48534",
+      "_v": 1,
+      "yearLabel": "2027",
+      "kind": "planned",
+      "label": "NEXT · PLANNED",
+      "heading": "Planned direction",
+      "entries": [
+        {
+          "dateLabel": "",
+          "title": "Data structures & algorithms",
+          "body": "Coursework, plus implementing the core structures in C++."
+        },
+        {
+          "dateLabel": "",
+          "title": "Machine learning fundamentals",
+          "body": "Following the AI Lab plan: math, classical ML, then deep learning."
+        },
+        {
+          "dateLabel": "",
+          "title": "Larger systems + ML builds",
+          "body": "Projects that pair a real backend with a model I trained, not just an API call."
+        }
+      ]
+    }
+  ]
+}

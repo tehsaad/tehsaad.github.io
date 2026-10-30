@@ -1,36 +1,36 @@
-/**
- * Identity + contact. Anything set to `null` is simply not rendered in production —
- * fill it in when you want it public. Nothing here is guessed.
- */
+import portfolio from "./portfolio.json";
+
+export const { projects, profile, skills, principles, journey } = portfolio;
+
+export type Project = (typeof projects)[number];
+
 export const site = {
-  name: "TehSaad",
-  handle: "tehsaad",
-  role: "Computer Science Student · AI & Software Developer",
-  location: "Islamabad, PK",
-  timeZone: "Asia/Karachi",
-  tzLabel: "PKT",
-  /** Explicit override → the GitHub Pages custom domain. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tehsaad.me",
+  caseStudies: "https://www.tehsaad.site/projects.html",
   description:
-    "TehSaad — computer science student building computer-vision interfaces, C++/Qt desktop software and full-stack products. A working bench of real builds.",
-  links: {
-    github: "https://github.com/tehsaad",
-    /** e.g. "https://www.linkedin.com/in/your-handle" */
-    linkedin: null as string | null,
-    /** e.g. "you@domain.com" — kept null until you decide to publish it. */
-    email: null as string | null,
-  },
-} as const;
+    "Saad Rizwan (TehSaad), a Computer Science undergraduate at NUST SEECS, Islamabad, building AI, systems, and full-stack software projects.",
+  github: profile.social.find((s) => s.kind === "github")!.url,
+  linkedin: profile.social.find((s) => s.kind === "linkedin")!.url,
+};
 
-export type SectionId = "bench" | "operator" | "builds" | "vision" | "materials" | "scratch" | "signal";
+export const STATUS_LABELS: Record<string, string> = {
+  deployed: "Deployed",
+  completed: "Completed",
+  experiment: "Experiment",
+  "in-development": "In Development",
+};
 
-/** The bench is navigated like a filesystem: every section is a path. */
-export const sections: { id: SectionId; path: string; title: string; hint: string }[] = [
-  { id: "bench", path: "~/bench", title: "Bench", hint: "start here" },
-  { id: "operator", path: "~/operator", title: "Operator", hint: "who's building" },
-  { id: "builds", path: "~/builds", title: "Builds", hint: "four case files" },
-  { id: "vision", path: "~/vision", title: "Vision lab", hint: "how a machine reads a hand" },
-  { id: "materials", path: "~/materials", title: "Materials", hint: "stack × builds" },
-  { id: "scratch", path: "~/scratch", title: "Scratch", hint: "experiments + hackathons" },
-  { id: "signal", path: "~/signal", title: "Signal", hint: "get in touch" },
-];
+/** Screenshots live at the same file names as on the main site, under /work. */
+export function imageSrc(url: string) {
+  return "/work/" + url.split("/").pop();
+}
+
+/** Game links are relative to the main site. */
+export function linkHref(url: string) {
+  return /^https?:/.test(url) ? url : `https://www.tehsaad.site/${url}`;
+}
+
+/** The CMS allows `code` marks; this page shows them as plain text. */
+export function plain(text: string) {
+  return text.replace(/[`*]/g, "");
+}
